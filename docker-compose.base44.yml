@@ -1,0 +1,32 @@
+services:
+  docs:
+    image: node:22
+    working_dir: /app
+    restart: on-failure
+    command:
+      - sh
+      - -ec
+      - |
+        npm install --prefix /opt/mint --no-audit --no-fund mint@latest
+        exec /opt/mint/node_modules/.bin/mint dev --port 3000
+    volumes:
+      - .:/app
+      - mint-prefix:/opt/mint
+    ports:
+      - "3000:3000"
+    environment:
+      - MINTLIFY_TELEMETRY_DISABLED=1
+      - HOST=0.0.0.0
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 90s
+
+volumes:
+  mint-prefix:
