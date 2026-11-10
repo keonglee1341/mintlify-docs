@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "AKPS Build Empire Crown Team",
   "colors": {
-    "primary": "#6D28D9",
-    "light": "#8B5CF6",
-    "dark": "#5B21B6"
+    "primary": "#A16207",
+    "light": "#E7C766",
+    "dark": "#7C4A03"
   },
   "favicon": "/favicon.svg",
   "navigation": {
