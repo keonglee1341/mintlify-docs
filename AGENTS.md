@@ -4,6 +4,13 @@
 
 # Documentation project instructions
 
+## Local preview
+
+- Run the site with `docker compose -f docker-compose.base44.yml up -d`; it listens on host port 3000.
+- The container installs the Mintlify CLI (`npm install -g mint`) on start and runs `mint dev --no-open --host` against the bind-mounted source, so MDX and `docs.json` edits appear without a rebuild.
+- The first start takes ~1-2 minutes while the CLI installs and prepares the preview; the healthcheck has a 240s grace period for that.
+- No Mintlify login is needed for the local preview. Search is server-backed, so `mint dev` logs "Run mint login in the cli to activate search" and search stays inactive locally — that is expected, not a defect.
+
 ## About this project
 
 - This is a documentation site built on [Mintlify](https://mintlify.com)
